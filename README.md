@@ -1,10 +1,10 @@
 # GeoJSON_Inspect
 View and Split-out GeoJSON files for troubleshooting
 
-Description:
+*Description:*
 When dealing with Large GeoJSON files it can be difficult to troubleshoot when your local text editor is unable to open such large files typically files over 60MB. Use this command line tool to split-out the GeoJSON objects into separate GeoJSON files so that you can troubleshoot each object individually. Alternatively you may just want to split out the first X number of objects so that you can understand the metadata associated with the Geo Spatial objects.
 
-Usage:
+*Usage:*
 The following paragraph will walk through typical usage of the tool.
 
 Copy the application for your operating system from the bin folder or compile for NodeJS using the source code.
