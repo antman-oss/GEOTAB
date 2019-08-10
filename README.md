@@ -11,7 +11,7 @@ Copy the application for your operating system from the bin folder or compile fo
 Navigate to the directory hosting your GeoJSON file. Any exported files will automatically save to the current directory.
 
 GeoJSON_Inspect <geojsonfilename> <geojson key name (0 to ignore)> <number of objects to extract (0=All)> <1=analyse 0=ignore>
-Examples:
+Examples (windows):
 
 When you want to know what is in your GeoJSON file you can just grab the first x number of object and export to separate files.
 
@@ -42,16 +42,16 @@ mygeojsonfile.json
   ]
 }
 
-> GeoJSON_Inspect mygeojsonfile.json 0 1
+> GeoJSON_Inspect.exe mygeojsonfile.json 0 1
 Result: First geo object is extracted and saved as e.g. 1_mygeojsonfile.json
 This file will most likely be small and you will be able to interrogate the file with a text editor.
 
->GeoJSON_Inspect mygeojsonfile.json properties.NAME 0
+>GeoJSON_Inspect.exe mygeojsonfile.json properties.NAME 0
 Result: Every geo object is extracted and saved with using value from object Key called properties.SHAPENAME e.g. 1_sydney_mygeojsonfile.json
 2_brisbane_mygeojsonfile.json
 This is helpful to find a particular geo object by using a geojson Key Value in the filename.
 
->GeoJSON_Inspect mygeojsonfile.json properties.EXTENT 1 1
+>GeoJSON_Inspect.exe mygeojsonfile.json properties.EXTENT 1 1
 Result: First geo object is extracted and saved as e.g. 
 1_land_mygeojsonfile.json 
 ["land":2] - console displays number entries per value.
