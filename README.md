@@ -1,10 +1,10 @@
 # GeoJSON_Inspect
 View and Split-out GeoJSON files for troubleshooting
 
-*Description:*
+#Description:
 When dealing with Large GeoJSON files it can be difficult to troubleshoot when your local text editor is unable to open such large files typically files over 60MB. Use this command line tool to split-out the GeoJSON objects into separate GeoJSON files so that you can troubleshoot each object individually. Alternatively you may just want to split out the first X number of objects so that you can understand the metadata associated with the Geo Spatial objects.
 
-*Usage:*
+#Usage:
 The following paragraph will walk through typical usage of the tool.
 
 Copy the application for your operating system from the bin folder or compile for NodeJS using the source code.
@@ -57,12 +57,12 @@ Result: First geo object is extracted and saved as e.g.
 ["land":2] - console displays number entries per value.
 The Key properties.EXTENT in analysed and duplicate values are printed to the console. This is a common issue in GIS where you need to ensure that your object primary key is actually unique.
 
-Conversion Tools:
+#Conversion Tools:
 
-_ESRI Shape Files
+##ESRI Shape Files
 If you have Esri Shape Files you can easily convert these with Online or Offline Conversion tools to GeoJSON format before using with this tool. Some of the tools that I have haved used previously and that can handle larger files are mapshaper.org (online) and GDAL.org (offline).
 
-_OGR2OGR Conversion Example
+##OGR2OGR Conversion Example
 Once installed open the GDAL Command Prompt. Navigate to your PATHtoFiLE. Run a command line such as the following and replace [name] with source and destination path\filesname. I normally deal with WGS84 Datum, read through GDAL for other options.
 
 ogr2ogr -f GeoJSON -t_srs crs:84 [name].geojson [name].shp
