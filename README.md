@@ -1,17 +1,18 @@
 # GeoJSON_Inspect
-View and Split-out GeoJSON files for troubleshooting
+View|Filter|Export|Host GeoJSON files
 
 # Description:
-When dealing with Large GeoJSON files it can be difficult to troubleshoot when your local text editor is unable to open such large files typically files over 60MB. Use this command line tool to split-out the GeoJSON objects into separate GeoJSON files so that you can troubleshoot each object individually. Alternatively you may just want to split out the first X number of objects so that you can understand the metadata associated with the Geo Spatial objects.
+When dealing with Large GeoJSON files it can be difficult to troubleshoot when your local text editor is unable to open such large files typically files over 60MB. Use this tool to help troubleshoot your GeoJSON files. You can export small subsets of data when working with large files to understand the attributes. You can export subsets of data based on certain filters.
+You can export GeoJSON as a flattened Tab text file and you can host your exported file to make them available to other webservices.
+Exported files are available as Physical: /public/exports/filename URL: host/exports/filename 
 
 # Usage:
 The following paragraph will walk through typical usage of the tool.
 
-Copy the application for your operating system from the bin folder or compile for NodeJS using the source code.
-Navigate to the directory hosting your GeoJSON file. Any exported files will automatically save to the current directory.
+Build from source or download the executable from the dist folder.
 
-GeoJSON_Inspect <geojsonfilename> <geojson key name (0 to ignore)> <number of objects to extract (0=All)> <1=analyse 0=ignore>
-Examples (windows):
+The node application runs an ExpressJS web application from the source computer. By default.
+
 
 When you want to know what is in your GeoJSON file you can just grab the first x number of object and export to separate files.
 
