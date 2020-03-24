@@ -24,7 +24,16 @@ Limit Export Count: As the option implies you can limit the number of records ex
 
 Export as Geo Tab File: GeoTab file is JSON.stringified tab delimeter (flattened) version of your GeoJson file. In some applications this may be more preferrable than using a complext structed format like GeoJson. The filename created is the same as the source GeoJSON with the extra extension of .txt
 
+Hosting: All exported files in your export folder are automatically available as hosted files accessible by url. Files can be accessed using http://hostname:port/export/filename.ext
 
+Hostname: The default hostname is http://hostname:3035 , however ExpressJS will make the web application on all available local ip addresses, meaning that this web application will work across networks where ip and port addressing is allowed.
+
+Config: A config.json file can be created and saved in the same folder as the node application to be read on starting. Available options are port and autoStartBrowser I.e
+<contents of config.json> 
+{
+    "port": 3035,
+    "autoStartBrowser": true
+}
 
 # Typical GeoJson File:
 
