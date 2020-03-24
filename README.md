@@ -1,6 +1,8 @@
 # GeoJSON_Inspect
 View|Filter|Export|Host GeoJSON files
 
+![GitHub Logo](/img/GEOTAB.png)
+
 # Description:
 When dealing with Large GeoJSON files it can be difficult to troubleshoot when your local text editor is unable to open such large files typically files over 60MB. Use this tool to help troubleshoot your GeoJSON files. You can export small subsets of data when working with large files to understand the attributes. You can export subsets of data based on certain filters.
 You can export GeoJSON as a flattened Tab text file and you can host your exported file to make them available to other webservices.
