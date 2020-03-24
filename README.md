@@ -1,4 +1,4 @@
-# GeoJSON_Inspect
+# GEOTAB
 View|Filter|Export|Host GeoJSON files
 
 ![GitHub Logo](/img/GEOTAB.png)
