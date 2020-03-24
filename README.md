@@ -7,14 +7,26 @@ You can export GeoJSON as a flattened Tab text file and you can host your export
 Exported files are available as Physical: /public/exports/filename URL: host/exports/filename 
 
 # Usage:
-The following paragraph will walk through typical usage of the tool.
 
 Build from source or download the executable from the dist folder.
 
-The node application runs an ExpressJS web application from the source computer. By default.
+The node application runs an ExpressJS web application from the source computer. By default the application will start your default browser and navigate to the web application.
+
+Upload: The first step is to upload your GeoJSON file to the web application. Select your local file, your desired sample size and press Upload. A sample of your file will be displayed if it can read.Use geojsonlint.com to validate your file if it is not accepted.
+
+Filter: Now that you can view the properties of the GeoJson file and the geometry you wish to search and filter by Property. Type you Keyname exactly as shown in the sample and then use comma separated search parametes in the keyvalue. Wildcards are not required. Ensure that Filter is your action option and then press Submit. The sample should now display a sample based on your filter.
+
+Filter & Export: Using the above instruction you may filter for records and export the subset of records as a new GeoJson file. Change the action option to Filer & Export then press Submit. Exports are saved in a subfolder called 'export' under the same folder as your node application.
+
+Filter & Export Separate Files: Using the above instructions you may want to filter for records and then export the subset of records as individual GeoJson files. Change the action option to Filer & Export Separate Files then press Submit. CAUTION: This may create an excessive amount of files. Folder location is the same 'export'.
+
+Limit Export Count: As the option implies you can limit the number of records exported to file starting from the 1st record. Sample Size has no impact on the Limit Export Count option.
+
+Export as Geo Tab File: GeoTab file is JSON.stringified tab delimeter (flattened) version of your GeoJson file. In some applications this may be more preferrable than using a complext structed format like GeoJson. The filename created is the same as the source GeoJSON with the extra extension of .txt
 
 
-When you want to know what is in your GeoJSON file you can just grab the first x number of object and export to separate files.
+
+# Typical GeoJson File:
 
 mygeojsonfile.json
 {"type":"FeatureCollection","features":[
@@ -42,21 +54,6 @@ mygeojsonfile.json
     }
   ]
 }
-
-> GeoJSON_Inspect.exe mygeojsonfile.json 0 1
-Result: First geo object is extracted and saved as e.g. 1_mygeojsonfile.json
-This file will most likely be small and you will be able to interrogate the file with a text editor.
-
->GeoJSON_Inspect.exe mygeojsonfile.json properties.NAME 0
-Result: Every geo object is extracted and saved with using value from object Key called properties.SHAPENAME e.g. 1_sydney_mygeojsonfile.json
-2_brisbane_mygeojsonfile.json
-This is helpful to find a particular geo object by using a geojson Key Value in the filename.
-
->GeoJSON_Inspect.exe mygeojsonfile.json properties.EXTENT 1 1
-Result: First geo object is extracted and saved as e.g. 
-1_land_mygeojsonfile.json 
-["land":2] - console displays number entries per value.
-The Key properties.EXTENT in analysed and duplicate values are printed to the console. This is a common issue in GIS where you need to ensure that your object primary key is actually unique.
 
 # Conversion Tools:
 
