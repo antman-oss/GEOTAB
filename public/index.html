@@ -7,8 +7,8 @@
 
     <title>GeoJSON Filter Splitter</title>
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+    <meta name="description" content="GeoJson Utility">
+    <meta name="author" content="">
 	<link rel="icon" href="img/icon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
@@ -22,96 +22,95 @@
   
   <body>
 
-    <div class="container-fluid">
-	<div class="row">
-		<div class="offset-md-1 col-md-10">
-			<br>
-			<div class="input-group">
-				<h3>
-					GeoJSON Filter Splitter Tool
-				</h3><hr>
-				<button id="exitBtn" class="btn btn-danger">
-					Exit
-				</button>
+    <div class="container-fluid" style="margin-left: 3%;margin-right: 3%">
+		<div class="row">
+			<div class="col-lg-12">
+				<br>
+				<div class="form-group form-control-xs">
+					<h3>
+						GeoJSON Filter Splitter Tool
+					</h3>
+				</div>
+				<p>
+					Use this tool to help troubleshoot your GeoJSON files. You can export small subsets of data when working with large files to understand the attributes. You can export subsets of data based on certain filters.
+					You can export GeoJSON as a flattened Tab text file and you can host your exported file to make them available to other webservices.
+					Exported files are available as Physical: /public/exports/filename URL: host/exports/filename 
+				</p>
 			</div>
-			<p>
-				Use this tool to help troubleshoot your GeoJSON files. You can export small subsets of data when working with large files to understand the attributes. You can export subsets of data based on certain filters.
-				You can export GeoJSON as a flattened Tab text file and you can host your exported file to make them available to other webservices.
-				Exported files are available as Physical: /public/exports/filename URL: host/exports/filename 
-			</p>
-			<p><h5>File Selection</h5></p>
-			<form id="file_submit" enctype="multipart/form-data">
-				<div class="form-group">
-					<input type="file" class="form-control-file" id="InputFile">
-				</div>
-				<div class="form-group">
-					<label for="InputSample">
-						Sample Size
-					</label>
-					<input type="number" class="form-control col-sm-1" id="InputSample" value="10">
-				</div>
-				<button type="submit" class="btn btn-primary">
-					Upload
-				</button>
-			</form>
-			<p>Sample</p>
-			<div id="sampleData" class="table-responsive">
+		</div>
+		<div class="row">
+			<div class="col-lg-2">
+				<form id="file_submit" enctype="multipart/form-data">
+					<p><h5>File Selection</h5></p>	
+					<div class="form-group form-control-xs">
+						<div class="col-xs-10">
+							<input type="file" class="form-control-file" id="InputFile">
+						</div>	
+					</div>
+					<div class="form-group form-control-xs">
+						<div class="col-xs-10">
+							<button type="submit" class="btn btn-primary">Upload</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			<br>
-			<p><h5>Split and Filter your exported file.</h5></p>
-			<form id="filter_submit">
-				<div class="form-group">
-				<label for="InputKeyname">
-						Keyname (optional)
-					</label>
-					<input type="text" class="form-control col-md-3" id="InputKeyname">
-				</div>
-				<div class="form-group">
-					 
-					<label for="InputKeyValue">
-						Key Value (optional)
-					</label>
-					<input type="text" class="form-control col-md-3" id="InputKeyValue">
-				</div>
-				<div class="form-group">
-					 
-					<label for="InputLimit">
-						Limit Export Count
-					</label>
-					<input type="number" class="form-control col-sm-1" id="InputLimit" value="0">
-				</div>
-				<div>
-					<label class="radio-inline">
-						<input type="radio" name="InputExport" value=1 checked>Filter
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="InputExport" value=2>Filter & Export
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="InputExport" value=3>Filter & Export Separate Files
-					</label> 
-				</div> 
-				<div class="checkbox checkbox-primary">
-					<input type="checkbox" class="styled" id="InputGeoTab">
-					<label for="InputGeoTab">
-						Export as Geo Tab File
-					</label>
-				</div>
-				<button type="submit" class="btn btn-primary">
-					Submit
-				</button>
-			</form>
+			<div class="col-lg-2">
+				<p><h5>Filter</h5></p>
+				<form id="filter_submit">
+					<div class="form-group form-control-xs">
+						<input type="text" class="form-control" id="InputKeyname" placeholder="Keyname (optional)">
+					</div>
+					<div class="form-group  form-control-xs">
+						<input type="text" class="form-control" id="InputKeyValue" placeholder="Key Value (optional)">
+					</div>
+					<div class="form-group  form-control-xs">
+						<span class="tooltiptext">Sample Records</span>
+						<input type="number" class="form-control form-control-xs" id="InputSample" value="10" placeholder="Sample Size">
+					</div>
+					<div class="form-group form-control-xs">
+						<button type="submit" class="btn btn-primary">Filter</button>
+					</div>
+				</form>
+			</div>			
+			<div class="col-lg-2">
+				<p><h5>Export</h5></p>
+				<form id="export_submit">
+					<div class="form-group  form-control-xs">
+						<span class="tooltiptext">Limit Export</span>
+						<input type="number" class="form-control input-xs" id="InputLimit" value="0">
+					</div>
+					<div class="checkbox checkbox-primary">
+						<input type="checkbox" class="styled" id="InputGeoTab">
+						<label for="InputExport">
+							Export as Separate Files
+						</label>
+					</div>
+					<div class="checkbox checkbox-primary">
+						<input type="checkbox" class="styled" id="InputGeoTab">
+						<label for="InputGeoTab">
+							Export as Geo Tab File
+						</label>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						Export
+					</button>
+				</form>
+			</div>		
+			<div class="col-lg-6">
+				<p><h5>Messages</h5></p>
+				<div id="msg" style="overflow-y: scroll; height: 200px"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p><h5>Sample Results</h5></p>
+				<div id="sampleData" class="table-responsive"></div>
+			</div>	
 		</div>
 	</div>
-	<div class="row">
-		<div class="offset-md-1 col-md-10">
-			<div id="msg"></div>
-		</div>
-	</div>
-
-</div>
 <script>
-
+	var filter_export_opt = 1;
+	var message;
 	function CreateTableFromJSON(sampleArray) {
 			
 		// EXTRACT VALUE FOR HTML HEADER. 
@@ -124,8 +123,6 @@
 				}
 			}
 		}
-
-
 
 		// CREATE DYNAMIC TABLE.
 		var table = document.createElement("table");
@@ -163,8 +160,10 @@
 		var data = new FormData();
 		$.each($('#InputFile')[0].files, function(i, file) {
 			data.append('file-'+i, file);
+			message = 'Uploading...'+file.name
+			$('#msg').html(message)
 		});
-		$('#msg').text('Uploading...')
+		
 		$.ajax({
 			type: "POST",
 			method: "POST",
@@ -175,44 +174,57 @@
 			data: data,
 			statusCode: {
 				200: function(response){
-					$('#msg').text(response.msg)
+					message = `${response.msg}<br>${message}`
+					$('#msg').html(message)
 					CreateTableFromJSON(response.rows)
 				},
 				405: function(response){
-					$('#msg').text('Unsuccesful. File not processed.')
+					$('#msg').html(`Unsuccesful. File not processed.<br>${$('#msg').html()}`)
 				},
 				406: function(response){
-					$('#msg').text('Unsuccesful. Error reading GeoJson file.')
+					$('#msg').html(`Unsuccesful. Error reading GeoJson file.<br>${$('#msg').html()}`)
 				},
 				407: function(response){
-					$('#msg').text('Unsuccesful. Not Valid GeoJson File.')
+					$('#msg').html(`Unsuccesful. Not Valid GeoJson File.<br>${$('#msg').html()}`)
 				},
 				401: function(err){
-					$('#msg').text('401 Error. See DevTool Console for more details.')
+					$('#msg').html(`401 Error. See DevTool Console for more details.<br>${$('#msg').html()}`)
 				},
 				default: function(response){
-					$('#msg').text('Upload successful.')
+					$('#msg').html(`Upload successful.<br>${$('#msg').text()}`)
 				}
 			},
 			success: function(data){
 			},
 			error: function(err){
+				$('#msg').html(`Error. Check the browser console for more detail.<br>${$('#msg').html()}`)
 				console.log(err)
 			}
 		})
 	})
 	
 	$("#filter_submit").on("submit",function(e){
-		
 		e.preventDefault();
+		filter_export_opt = 1;
+		filter_export()
+	})
+	$("#export_submit").on("submit",function(e){
+		e.preventDefault();
+		filter_export_opt = 2;
+		filter_export()
+	})
+
+	function filter_export(){	
+		
 		var val = {
 			keyname: $('#InputKeyname').val() || 0,
 			keyvalue: $('#InputKeyValue').val() || 0,
 			limit: $('#InputLimit').val() || 0,
-			export: $("input[name='InputExport']:checked").val(),
+			filter_export: filter_export_opt,
+			export: $("InputExport").is(":checked"),
 			tab: $('#InputGeoTab').is(":checked")
 		}
-		$('#msg').text('Processing...')
+		//$('#msg').text(`Processing...\n ${$('#msg').text()}`)
 		$.ajax({
 			type: "POST",
 			method: "POST",
@@ -221,23 +233,28 @@
 			data: JSON.stringify(val),
 			statusCode: {
 				200: function(response){
-					$('#msg').text(response.msg)
-					CreateTableFromJSON(response.rows)
+					message = `${response.msg}<br>${message}`
+					$('#msg').html(message)
+					console.log(response)
+					if(response.update){
+						CreateTableFromJSON(response.rows)
+					}
+					
 				},
 				405: function(response){
-					$('#msg').text('Unsuccesful. Keyname not found.')
+					$('#msg').text(`Unsuccesful. Keyname not found. \n ${$('#msg').text()}`)
 				},
 				406: function(response){
-					$('#msg').text('Unsuccesful. Error reading GeoJson file.')
+					$('#msg').text(`Unsuccesful. Error reading GeoJson file. \n ${$('#msg').text()}`)
 				},
 				407: function(response){
-					$('#msg').text('Unsuccesful. Not Valid GeoJson File.')
+					$('#msg').text(`Unsuccesful. Not Valid GeoJson File. \n ${$('#msg').text()}`)
 				},
 				401: function(err){
-					$('#msg').text('401 Error. See DevTool Console for more details.')
+					$('#msg').text(`401 Error. See DevTool Console for more details. \n ${$('#msg').text()}`)
 				},
 				default: function(response){
-					$('#msg').text('Successful.')
+					$('#msg').text(`Successful. \n ${$('#msg').text()}`)
 				}
 			},
 			success: function(data){
@@ -246,7 +263,7 @@
 				console.log(err)
 			}
 		})
-	})
+	}
 
 	$("#exitBtn").on("click",function(){
 		$.ajax({
