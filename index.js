@@ -108,6 +108,7 @@ app.post('/v1/file_upload/:sample', function(req, res, next){
       
 });
 
+var filterArray = [];
 
 app.post("/v1/filter/:sample", function(req, res, next){
     const sampleSize = req.params.sample
@@ -165,8 +166,8 @@ app.post("/v1/filter/:sample", function(req, res, next){
         }
     }
 
-    function exportFile(geojson_contents,exportName,exportNo){
-        fs.writeFileSync(exportName,JSON.stringify(geojson_contents))
+    function exportFile(contents,exportName,exportNo){
+        fs.writeFileSync(exportName,JSON.stringify(contents))
         console.log('Creating ' + exportName)
         
         if (exportNo == 1){ // Ensure we only response once
@@ -178,13 +179,13 @@ app.post("/v1/filter/:sample", function(req, res, next){
         }
     }
 
-    function exportTabFile(filterArray,exportName,exportNo){
+    function exportTabFile(contents,exportName,exportNo){
         var tabfile=''
         sourceFields().forEach(f => {
             tabfile += f + "\t" //header
         })
         tabfile += "\r\n" //end of line
-        filterArray.forEach(element => {
+        contents.forEach(element => {
             sourceFields().forEach(f => {
                 tabfile += JSON.stringify(element[f]) + "\t" //each column
             })
@@ -202,11 +203,13 @@ app.post("/v1/filter/:sample", function(req, res, next){
         }
     }
 
-    var filterArray = []
-    const geojson_template = {"type":"FeatureCollection", "features": []} 
     
+    const geojson_template = {"type":"FeatureCollection", "features": []} 
+    var tabArray = []
+
     if(filter_export == 1){
         //Filter
+        filterArray = []
         var filterCount=0
         sampleArray.forEach(item =>{
             
@@ -235,6 +238,9 @@ app.post("/v1/filter/:sample", function(req, res, next){
         //Export
         var limitCount = 0;
         separateFileCount = 0
+        if(filterArray.length == 0){
+            filterArray = sampleArray
+        }
         filterArray.forEach(item =>{
             
             if (++limitCount <= limit || limit == 0){
@@ -251,19 +257,23 @@ app.post("/v1/filter/:sample", function(req, res, next){
                 delete tmp_item.coordinates
                 
                 Object.assign(obj.properties, tmp_item)
-                geojson_template.features.push(obj)
+                if (exportTab){
+                    tabArray.push(item)
+                }else{
+                    geojson_template.features.push(obj)
+                }
+                
                 
                 // Separated Export - run after every object
                 if (exportType){
                     if (exportTab){
-                        tabArray = [item]
                         exportTabFile(tabArray,`export/limited_${limitCount}_${uploadedFile}`,++separateFileCount)
+                        tabArray = []
                     }else{
                         exportFile(geojson_template,`export/limited_${limitCount}_${uploadedFile}`,++separateFileCount)
+                        geojson_template.features=[]
                     }
-                        // reset
-                    geojson_template.features=[]
-                    tabArray = []
+                      
                 }
             }
         })
@@ -271,7 +281,7 @@ app.post("/v1/filter/:sample", function(req, res, next){
         // Combined Export - run after all object appended
         if (!exportType){
             if (exportTab){
-                exportTabFile(filterArray,`export/combined_${limit}_${uploadedFile}`,1)
+                exportTabFile(tabArray,`export/combined_${limit}_${uploadedFile}`,1)
             }else{
                 exportFile(geojson_template,`export/combined_${limit}_${uploadedFile}`,1)
             }

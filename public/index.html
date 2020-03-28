@@ -80,7 +80,7 @@
 						<input type="number" class="form-control input-xs" id="InputLimit" value="0">
 					</div>
 					<div class="checkbox checkbox-primary">
-						<input type="checkbox" class="styled" id="InputGeoTab">
+						<input type="checkbox" class="styled" id="InputExport">
 						<label for="InputExport">
 							Export as Separate Files
 						</label>
@@ -221,7 +221,7 @@
 			keyvalue: $('#InputKeyValue').val() || 0,
 			limit: $('#InputLimit').val() || 0,
 			filter_export: filter_export_opt,
-			export: $("InputExport").is(":checked"),
+			export: $("#InputExport").is(":checked"),
 			tab: $('#InputGeoTab').is(":checked")
 		}
 		//$('#msg').text(`Processing...\n ${$('#msg').text()}`)
